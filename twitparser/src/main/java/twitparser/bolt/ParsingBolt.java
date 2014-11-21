@@ -1,4 +1,4 @@
-package bolt;
+package twitparser.bolt;
 
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
@@ -15,7 +15,6 @@ import java.util.Map;
 
 public class ParsingBolt extends BaseRichBolt {
     public static Logger logger = LoggerFactory.getLogger(ParsingBolt.class);
-
     private OutputCollector collector;
 
     @Override
@@ -26,8 +25,8 @@ public class ParsingBolt extends BaseRichBolt {
     @Override
     public void execute(Tuple tuple) {
         final Status status = (Status) tuple.getValueByField("tweet");
-        final String text = status.getText();
-        logger.info("A tweet '" + status.getId() + "' parsed: " + text.substring(0, 20));
+        final String text = status.getText().toLowerCase();
+        logger.info("A tweet '" + status.getId() + "' parsed: " + (text.length() > 20 ? text.substring(0, 20) : text));
         collector.emit(new Values(text));
     }
 

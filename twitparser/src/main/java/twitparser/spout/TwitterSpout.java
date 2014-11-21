@@ -1,4 +1,4 @@
-package spout;
+package twitparser.spout;
 
 import backtype.storm.Config;
 import backtype.storm.spout.SpoutOutputCollector;
@@ -9,6 +9,7 @@ import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Values;
 import backtype.storm.utils.Utils;
 
+import twitparser.Constants;
 import twitter4j.FilterQuery;
 import twitter4j.StallWarning;
 import twitter4j.Status;
@@ -26,18 +27,13 @@ public class TwitterSpout extends BaseRichSpout {
     SpoutOutputCollector _collector;
     LinkedBlockingQueue<Status> queue = null;
     TwitterStream _twitterStream;
-    String consumerKey;
-    String consumerSecret;
-    String accessToken;
-    String accessTokenSecret;
+    String consumerKey = Constants.ConsumerKey;
+    String consumerSecret = Constants.ConsumerSecret;
+    String accessToken = Constants.AccessToken;
+    String accessTokenSecret = Constants.AccessTokenSecret;
     String[] keyWords;
 
-    public TwitterSpout(String consumerKey, String consumerSecret,
-                              String accessToken, String accessTokenSecret, String[] keyWords) {
-        this.consumerKey = consumerKey;
-        this.consumerSecret = consumerSecret;
-        this.accessToken = accessToken;
-        this.accessTokenSecret = accessTokenSecret;
+    public TwitterSpout(String[] keyWords) {
         this.keyWords = keyWords;
     }
 
