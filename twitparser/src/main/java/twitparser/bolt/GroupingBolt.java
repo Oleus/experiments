@@ -12,12 +12,10 @@ import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class GroupingBolt extends BaseRichBolt {
     public static Logger logger = LoggerFactory.getLogger(GroupingBolt.class);
-    private String id;
     private OutputCollector collector;
 
     private String[] keyWords;
@@ -29,7 +27,6 @@ public class GroupingBolt extends BaseRichBolt {
         for (String keyWord : keyWords) {
             scores.put(keyWord, new AtomicLong(0));
         }
-        id = UUID.randomUUID().toString();
     }
 
     @Override
@@ -41,9 +38,10 @@ public class GroupingBolt extends BaseRichBolt {
     public void execute(Tuple tuple) {
         final String tweet = tuple.getStringByField("text");
         for (String keyWord : keyWords) {
+            //keyWord can be not found for different languages
             if (tweet.contains(keyWord)) {
                 long score = scores.get(keyWord).incrementAndGet();
-                logger.info("[bolt " + id + "] " + keyWord + " references: " + score);
+                logger.info(keyWord + " references: " + score);
                 collector.emit(new Values(keyWord, tweet));
                 return;
             }

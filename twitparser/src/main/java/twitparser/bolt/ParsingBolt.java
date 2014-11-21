@@ -26,7 +26,7 @@ public class ParsingBolt extends BaseRichBolt {
     public void execute(Tuple tuple) {
         final Status status = (Status) tuple.getValueByField("tweet");
         final String text = status.getText().toLowerCase();
-        logger.info("A tweet '" + status.getId() + "' parsed: " + (text.length() > 20 ? text.substring(0, 20) : text));
+//        logger.info("A tweet '" + status.getId() + "' parsed: " + (text.length() > 20 ? text.substring(0, 20) : text));
         collector.emit(new Values(text));
     }
 

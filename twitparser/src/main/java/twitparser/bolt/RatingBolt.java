@@ -10,14 +10,11 @@ import twitparser.model.Rating;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.atomic.AtomicLong;
 
 public class RatingBolt extends BaseBasicBolt {
     public static Logger logger = LoggerFactory.getLogger(RatingBolt.class);
-    private String id;
-    private final String positiveMask = ".*(good|great|awesome|cool).*";
-    private final String negativeMask = ".*(bad|terrible|awful).*";
+    private final String positiveMask = ".*(good|great|awesome|cool|honor|right|respect|benefi|adept|expert|safe|positive).*";
+    private final String negativeMask = ".*(bad|terrible|awful|fear|negat|rubber|poor|unfavo|unsuit|horri|uncomfort|unfit|harm|evil).*";
 
     private Map<String, Rating> ratings;
 
@@ -26,7 +23,6 @@ public class RatingBolt extends BaseBasicBolt {
         for (String keyWord : keyWords) {
             ratings.put(keyWord, new Rating());
         }
-        id = UUID.randomUUID().toString();
     }
 
     @Override
@@ -47,7 +43,6 @@ public class RatingBolt extends BaseBasicBolt {
     }
 
     private void log(Tuple tuple, Rating rating) {
-        logger.info("[bolt " + id + "] " +
-                "Rating of " + tuple.getStringByField("keyWord") + ": " + rating.toString());
+        logger.info("Rating of " + tuple.getStringByField("keyWord") + ": " + rating.toString());
     }
 }
