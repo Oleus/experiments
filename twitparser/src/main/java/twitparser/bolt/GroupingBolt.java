@@ -42,7 +42,7 @@ public class GroupingBolt extends BaseRichBolt {
             if (tweet.contains(keyWord)) {
                 long score = scores.get(keyWord).incrementAndGet();
                 logger.info(keyWord + " references: " + score);
-                collector.emit(new Values(keyWord, tweet));
+                collector.emit(keyWord, new Values(tweet));
                 return;
             }
         }
@@ -51,6 +51,9 @@ public class GroupingBolt extends BaseRichBolt {
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("keyWord", "text"));
+        for (String keyWord : keyWords) {
+            declarer.declareStream(keyWord, true, new Fields("text"));
+        }
+//        declarer.declare(new Fields("keyWord", "text"));
     }
 }
