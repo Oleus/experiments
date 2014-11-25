@@ -29,7 +29,6 @@ public class ParserStormTopology {
         for (String keyWord : keyWords) {
             builder.setBolt(keyWord + "_rating", new RatingBolt(keyWord)).shuffleGrouping("group", keyWord);
         }
-//        builder.setBolt("rating", new RatingBolt(keyWords)).fieldsGrouping("group", new Fields("keyWord"));
 
         logger.info("All bolts were set for keywords: " + Arrays.toString(keyWords));
 
