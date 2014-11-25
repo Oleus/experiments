@@ -1,4 +1,4 @@
-package twitparser.spout;
+package twitparser.spouts;
 
 import backtype.storm.Config;
 import backtype.storm.spout.SpoutOutputCollector;

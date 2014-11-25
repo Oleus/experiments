@@ -1,4 +1,4 @@
-package twitparser.bolt;
+package twitparser.bolts;
 
 import backtype.storm.topology.BasicOutputCollector;
 import backtype.storm.topology.OutputFieldsDeclarer;
@@ -6,12 +6,11 @@ import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Tuple;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import twitparser.model.Rating;
+import twitparser.Constants;
+import twitparser.models.Rating;
 
 public class RatingBolt extends BaseBasicBolt {
     public static Logger logger = LoggerFactory.getLogger(RatingBolt.class);
-    private final String positiveMask = ".*(good|great|awesome|cool|honor|right|respect|benefi|adept|expert|safe|positive).*";
-    private final String negativeMask = ".*(bad|terrible|awful|fear|negat|rubber|poor|unfavo|unsuit|horri|uncomfort|unfit|harm|evil).*";
 
     private Rating rating;
     private String keyWord;
@@ -24,10 +23,10 @@ public class RatingBolt extends BaseBasicBolt {
     @Override
     public void execute(Tuple tuple, BasicOutputCollector collector) {
         final String tweet = tuple.getStringByField("text");
-        if (tweet.matches(positiveMask)) {
+        if (tweet.matches(Constants.PositiveRatingMask)) {
             rating.incrementPositive();
             log();
-        } else if (tweet.matches(negativeMask)) {
+        } else if (tweet.matches(Constants.NegativeRatingMask)) {
             rating.incrementNegative();
             log();
         }

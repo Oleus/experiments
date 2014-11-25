@@ -1,4 +1,4 @@
-package twitparser.model;
+package twitparser.models;
 
 import java.io.Serializable;
 

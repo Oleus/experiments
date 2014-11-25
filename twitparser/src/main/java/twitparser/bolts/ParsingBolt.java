@@ -1,4 +1,4 @@
-package twitparser.bolt;
+package twitparser.bolts;
 
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;

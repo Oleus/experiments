@@ -5,12 +5,12 @@ import backtype.storm.LocalCluster;
 import backtype.storm.StormSubmitter;
 import backtype.storm.topology.TopologyBuilder;
 import backtype.storm.utils.Utils;
-import twitparser.bolt.GroupingBolt;
-import twitparser.bolt.RatingBolt;
-import twitparser.bolt.ParsingBolt;
+import twitparser.bolts.GroupingBolt;
+import twitparser.bolts.RatingBolt;
+import twitparser.bolts.ParsingBolt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import twitparser.spout.TwitterSpout;
+import twitparser.spouts.TwitterSpout;
 
 import java.util.Arrays;
 
