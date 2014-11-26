@@ -1,4 +1,4 @@
-package twitparser.bolts;
+package twitparser.storm.bolts;
 
 import backtype.storm.topology.BasicOutputCollector;
 import backtype.storm.topology.OutputFieldsDeclarer;
@@ -6,8 +6,8 @@ import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Tuple;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import twitparser.Constants;
-import twitparser.models.Rating;
+import twitparser.storm.Constants;
+import twitparser.storm.models.Rating;
 
 public class RatingBolt extends BaseBasicBolt {
     public static Logger logger = LoggerFactory.getLogger(RatingBolt.class);

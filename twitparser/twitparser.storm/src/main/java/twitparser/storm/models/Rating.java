@@ -1,4 +1,4 @@
-package twitparser.models;
+package twitparser.storm.models;
 
 import java.io.Serializable;
 

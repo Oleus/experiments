@@ -2,18 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>twitparser</artifactId>
+        <groupId>twitparser</groupId>
+        <version>SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>twitparser</groupId>
-    <artifactId>twitparser</artifactId>
-    <version>SNAPSHOT</version>
-    <modules>
-        <module>twitparser.storm</module>
-        <module>twitparser.spark</module>
-    </modules>
-    <packaging>pom</packaging>
-    <name>twit-parser</name>
-
+    <artifactId>twitparser.storm</artifactId>
+    <packaging>jar</packaging>
+    <name>twit-parser-storm</name>
 
     <dependencies>
         <dependency>

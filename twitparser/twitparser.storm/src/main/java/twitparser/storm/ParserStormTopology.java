@@ -1,16 +1,16 @@
-package twitparser;
+package twitparser.storm;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.StormSubmitter;
 import backtype.storm.topology.TopologyBuilder;
 import backtype.storm.utils.Utils;
-import twitparser.bolts.GroupingBolt;
-import twitparser.bolts.RatingBolt;
-import twitparser.bolts.ParsingBolt;
+import twitparser.storm.bolts.GroupingBolt;
+import twitparser.storm.bolts.RatingBolt;
+import twitparser.storm.bolts.ParsingBolt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import twitparser.spouts.TwitterSpout;
+import twitparser.storm.spouts.TwitterSpout;
 
 import java.util.Arrays;
 
@@ -30,7 +30,7 @@ public class ParserStormTopology {
             builder.setBolt(keyWord + "_rating", new RatingBolt(keyWord)).shuffleGrouping("group", keyWord);
         }
 
-        logger.info("All bolts were set for keywords: " + Arrays.toString(keyWords));
+        logger.info("All com.twitparser.storm.bolts were set for keywords: " + Arrays.toString(keyWords));
 
         Config conf = new Config();
         conf.setDebug(true);

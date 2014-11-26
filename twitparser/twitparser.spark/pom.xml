@@ -2,18 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>twitparser</artifactId>
+        <groupId>twitparser</groupId>
+        <version>SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>twitparser</groupId>
-    <artifactId>twitparser</artifactId>
-    <version>SNAPSHOT</version>
-    <modules>
-        <module>twitparser.storm</module>
-        <module>twitparser.spark</module>
-    </modules>
-    <packaging>pom</packaging>
-    <name>twit-parser</name>
-
+    <artifactId>twitparser.spark</artifactId>
+    <packaging>jar</packaging>
+    <name>twit-parser-spark</name>
 
     <dependencies>
         <dependency>
@@ -27,14 +26,24 @@
             <version>[4.0,)</version>
         </dependency>
 
-
         <dependency>
-            <groupId>org.apache.storm</groupId>
-            <artifactId>storm-core</artifactId>
-            <version>0.9.2-incubating</version>
-            <!-- keep storm out of the jar-with-dependencies -->
-            <scope>provided</scope>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.10</artifactId>
+            <version>1.1.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming_2.10</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming-twitter_2.10</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+
+
+
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>

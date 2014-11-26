@@ -1,4 +1,4 @@
-package twitparser;
+package twitparser.storm;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
@@ -11,10 +11,10 @@ import org.slf4j.LoggerFactory;
 import storm.trident.TridentTopology;
 import storm.trident.fluent.GroupedStream;
 import storm.trident.testing.MemoryMapState;
-import twitparser.aggregators.Rate;
-import twitparser.aggregators.Score;
-import twitparser.functions.Parse;
-import twitparser.spouts.TwitterSpout;
+import twitparser.storm.aggregators.Rate;
+import twitparser.storm.aggregators.Score;
+import twitparser.storm.functions.Parse;
+import twitparser.storm.spouts.TwitterSpout;
 
 import java.util.Arrays;
 
@@ -48,14 +48,14 @@ public class ParserTridentTopology {
         TwitterSpout spout = new TwitterSpout(keyWords);
 
         GroupedStream keyWordsStream = topology.newStream("twitterspout", spout)
-                .parallelismHint(3)
+                .parallelismHint(4)
                 .each(new Fields("tweet"), new Parse(keyWords), new Fields("keyWord", "text"))
                 .groupBy(new Fields("keyWord"));
 
         keyWordsStream.persistentAggregate(new MemoryMapState.Factory(), new Fields("keyWord"), new Score(), new Fields("score"));
         keyWordsStream.persistentAggregate(new MemoryMapState.Factory(), new Fields("keyWord", "text"), new Rate(), new Fields("rating"));
 
-        logger.info("All bolts were set for keywords: " + Arrays.toString(keyWords));
+        logger.info("All com.twitparser.storm.bolts were set for keywords: " + Arrays.toString(keyWords));
 
         return topology.build();
     }

@@ -1,4 +1,4 @@
-package twitparser.functions;
+package twitparser.storm.functions;
 
 import backtype.storm.tuple.Values;
 import org.slf4j.Logger;

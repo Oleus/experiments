@@ -1,4 +1,4 @@
-package twitparser.aggregators;
+package twitparser.storm.aggregators;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

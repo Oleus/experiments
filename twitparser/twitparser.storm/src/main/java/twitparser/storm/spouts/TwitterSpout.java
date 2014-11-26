@@ -1,4 +1,4 @@
-package twitparser.spouts;
+package twitparser.storm.spouts;
 
 import backtype.storm.Config;
 import backtype.storm.spout.SpoutOutputCollector;
@@ -9,7 +9,7 @@ import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Values;
 import backtype.storm.utils.Utils;
 
-import twitparser.Constants;
+import twitparser.storm.Constants;
 import twitter4j.FilterQuery;
 import twitter4j.StallWarning;
 import twitter4j.Status;

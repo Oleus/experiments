@@ -1,10 +1,10 @@
-package twitparser.aggregators;
+package twitparser.storm.aggregators;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import storm.trident.tuple.TridentTuple;
-import twitparser.Constants;
-import twitparser.models.Rating;
+import twitparser.storm.Constants;
+import twitparser.storm.models.Rating;
 
 public class Rate implements storm.trident.operation.ReducerAggregator<Rating> {
     public static Logger logger = LoggerFactory.getLogger(Rate.class);

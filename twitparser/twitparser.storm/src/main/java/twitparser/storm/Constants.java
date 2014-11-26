@@ -1,4 +1,4 @@
-package twitparser;
+package twitparser.storm;
 
 public final class Constants {
     public static String ConsumerKey = "";
